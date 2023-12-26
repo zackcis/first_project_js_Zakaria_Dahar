@@ -21,16 +21,16 @@
         * If the user chooses to sign up, here are the details they must enter:
         <!--&&the user information have to be saved in an object that is an instance of a class called user -->
             # Name (Full):
-            - Check for leading or trailing spaces.
-            <!-- *delete spaces -->
+            - Check for leading or trailing spaces. 
+            <!--? delete spaces -->
             - The first letter should be capitalized.
-            <!--* Uperrcace -->
+            <!--? Uperrcace -->
             - After each space, the first letter should remain capitalized.
             - Check that all other characters are in lowercase.
             - Do not save the Name if it has less than 5 characters (excluding spaces).
-            <!--* it has to be more than 5 char -->
+            <!--? it has to be more than 5 char -->
             - Do not save the Name if it contains numbers, "@", or similar special characters.
-            <!--* Accept just string -->
+            <!--? Accept just string -->
             # Email:
             - Check for leading or trailing spaces.
             <!-- *delete spaces -->
