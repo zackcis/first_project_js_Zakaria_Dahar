@@ -35,22 +35,22 @@
             - Check for leading or trailing spaces.
             <!-- *delete spaces -->
             - Convert all letters to lowercase.
-            <!--*Lowercacse -->
+            <!--?Lowercacse -->
             - Do not save the Email if it has spaces in the middle.
-            <!--*Refuse if there is spaces -->
+            <!--?Refuse if there is spaces -->
             - Do not save the Email if it has fewer than 10 characters (excluding spaces).
-            <!--* it has to be more 10 char -->
+            <!--? it has to be more 10 char -->
             - Do not save the Email if it does not contain exactly one "@" symbol.
-            <!--*@ is mandatory -->
+            <!--?@ is mandatory -->
             - Ensure the email is unique.
-            <!--*special email -->
+            <!--?special email -->
             # Age:
             - Check for leading, trailing, or middle spaces.
-            <!-- *delete spaces -->
+            <!-- ?delete spaces -->
             - Verify that only digits are entered.
-            <!--*just Numbers -->
+            <!--?just Numbers -->
             - Do not save the Age if it has 0 characters, or if it has 3 characters or more.
-            <!--*enter your right age -->
+            <!--?enter your right age -->
             # Password:
             - Check for leading or trailing spaces.
             <!-- *delete spaces -->
