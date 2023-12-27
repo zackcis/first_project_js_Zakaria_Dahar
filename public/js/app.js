@@ -37,7 +37,7 @@ askEmail = askEmail.trim()
 askEmail = askEmail.toLocaleLowerCase()
 //(email.indexOf(' ') !== -1)
 
-if (askEmail.includes(' ') || askEmail.length < 10 || askEmail.includes('@') == false ) {
+if (askEmail.includes(' ') || askEmail.length < 10 || askEmail.includes('@') == false || askEmail.includes('.') == false) {
     while (askEmail.includes(' ')) {
         askEmail = prompt("Please enter an email without spaces.");
     }
@@ -47,12 +47,15 @@ if (askEmail.includes(' ') || askEmail.length < 10 || askEmail.includes('@') == 
     while (askEmail.includes('@') == false) {
         askEmail = prompt("Please enter an email with an '@' ");
     }
+    while (askEmail.includes('.') == false) {
+        askEmail = prompt("Please enter an email with a '.' ");
+    }
     // let isthemailexist = Users.filter(element => element.email == askEmail)
     // console.log(isthemailexist);
     // if (isthemailexist[0]== askEmail) {
     //     askEmail = prompt("Email already exists. Please enter a different email.");
     // }
-    while (emailExist(askEmail)=== true) {
+    while (emailExist(askEmail)) {
         askEmail = prompt("Email already exists. Please enter a different email.");
     }        
     //*Ensure the email is unique.
@@ -98,11 +101,20 @@ if (askPasswordConfirmation != askPassword) {
     }
 }
 let user = new User(nameWords.join(" "),askEmail,age,askPassword,[]);
-Users.history = [`${user.name} signed up`]
+User.history.push(`${user.name} signed up`)
 Users.push(user)
 console.log(Users);
 }
 //&singUp function end
+//&Take a loan start
+let credit;
+function Loan(user) {
+    //* If the user chooses this option, they can take a loan up to 20% of what they already have
+    user.balance += user.balance * 0.2
+    user.history.push(`${user.name} took a loan`)
+    credit = user.balance += user.balance * 0.2
+}
+//&Take a loan end
 //?Login function start
 function Login(user) {
     let loginEmail = prompt("Enter your email ");
@@ -223,14 +235,7 @@ if (ask === "sign up") {
     ask = prompt("Hello there!!,Do you want to Log in or Sign up or changing the password ?")
 }
 //^first condition end
-//&Take a loan start
-function Loan(user) {
-    //* If the user chooses this option, they can take a loan up to 20% of what they already have
-    user.balance += user.balance * 0.2
-    user.history.push(`${user.name} took a loan`)
-    var credit = user.balance += user.balance * 0.2
-}
-//&Take a loan end
+
 //*offering services start 
 function offerServices(User) {
     let userChoice = prompt("Choose option between: 'logout', 'withdraw', 'deposit', 'loan', 'invest', 'history'");
