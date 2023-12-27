@@ -111,10 +111,12 @@ function Login(user) {
     console.log(user);
     if (user) {
         alert(`welcome ${user.name} your balance is ${user.balance}`)
+        offerServices(user)
     } else {
         console.log("false email or password please try again");
     }
     Users.history.push(`${user.name} is conected`)
+
 }
 //?Login function end
 //^changin password start
