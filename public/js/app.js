@@ -11,6 +11,32 @@ class User {
 let Users = [];//*where will i save users data
 let zack = new User ("zack","zakaria.eldahar@gmail.com",23,"zakaria123@")
 Users.push(zack)
+//^first condition start
+let ask = prompt("Hello there!!,Do you want to Log in or Sign up or changing the password ?")//*asking the user for his desire
+ask = ask.toLocaleLowerCase().trim()
+// function firstCondition(){
+    // if (ask === "sign up") {
+    //     signUp()
+    // }else if (ask === "log in") {
+    //     Login()
+    //     //!careful this is the end of the second condition
+    // }else if (ask == "change password") {
+    //     changePassword()
+    // }else {
+    //     ask = prompt("Hello there!!,Do you want to Log in or Sign up or changing the password ?")
+    // }
+// }
+if (ask === "sign up") {
+    signUp()
+}else if (ask === "log in") {
+    Login()
+    //!careful this is the end of the second condition
+}else if (ask == "change password") {
+    changePassword()
+}else {
+    ask = prompt("Hello there!!,Do you want to Log in or Sign up or changing the password ?")
+}
+//^first condition end
 function emailExist(email) {
     return Users.find(user => user.email === email);
 }
@@ -100,7 +126,9 @@ if (askPasswordConfirmation != askPassword) {
         signUp()
     }
 }
-let user = new User(nameWords.join(" "),askEmail,age,askPassword,[]);
+//*user is already declared
+let user1 = new User(nameWords.join(" "),askEmail,age,askPassword,[]);
+//*user is already declared
 User.history.push(`${user.name} signed up`)
 Users.push(user)
 console.log(Users);
@@ -119,9 +147,9 @@ function Loan(user) {
 function Login(user) {
     let loginEmail = prompt("Enter your email ");
     let loginPassword = prompt("Enter your password ");
-    let user = Users.find(user => user.email === loginEmail && user.password === loginPassword);
-    console.log(user);
-    if (user) {
+    let userFind = Users.find(user => user.email === loginEmail && user.password === loginPassword);
+    console.log(userFind);
+    if (userFind) {
         alert(`welcome ${user.name} your balance is ${user.balance}`)
         offerServices(user)
     } else {
@@ -145,9 +173,9 @@ function changePassword(user) {
     
         let changePasswordEmail = prompt("Enter your email to change the password:");
         
-        let user = Users.find(user => user.email === changePasswordEmail);
+        let userFindo = Users.find(user => user.email === changePasswordEmail);
     
-        if (user) {
+        if (userFindo) {
             let newPassword = prompt("Enter your new password:");
             user.password = newPassword;
             console.log("daba bdlnah lik mara khra mat3awdhach");
@@ -208,33 +236,6 @@ function despositMoney(user) {
 
 }
 //!desposit money function end
-let ask = prompt("Hello there!!,Do you want to Log in or Sign up or changing the password ?")//*asking the user for his desire
-ask = ask.toLocaleLowerCase().trim()
-function firstCondition(){
-    // if (ask === "sign up") {
-    //     signUp()
-    // }else if (ask === "log in") {
-    //     Login()
-    //     //!careful this is the end of the second condition
-    // }else if (ask == "change password") {
-    //     changePassword()
-    // }else {
-    //     ask = prompt("Hello there!!,Do you want to Log in or Sign up or changing the password ?")
-    
-    // }
-}
-//^first condition start
-if (ask === "sign up") {
-    signUp()
-}else if (ask === "log in") {
-    Login()
-    //!careful this is the end of the second condition
-}else if (ask == "change password") {
-    changePassword()
-}else {
-    ask = prompt("Hello there!!,Do you want to Log in or Sign up or changing the password ?")
-}
-//^first condition end
 
 //*offering services start 
 function offerServices(User) {
@@ -255,10 +256,10 @@ function offerServices(User) {
                 }
                 break;
             case "Withdraw Money":
-                withdrawMoney(user)
+                withdrawMoney()
             break;
             case "Deposit Money":
-                despositMoney(user)
+                despositMoney()
             break;
             case "Take a Loan":
 
