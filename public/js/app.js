@@ -116,7 +116,16 @@ function Login(user) {
         console.log("false email or password please try again");
     }
     Users.history.push(`${user.name} is conected`)
-
+    while (user.history.includes(`${user.name} took a loan`)) {
+        user.balance -= user.balance * 0.1
+        //^^credit shoul be declared before this
+        if (user.balance == credit) {
+            break
+        }
+    }
+if (user.history.includes(`${user.name} took a loan`)) {
+    user.balance -= user.balance * 0.1
+}
 }
 //?Login function end
 //^changin password start
@@ -189,6 +198,20 @@ function despositMoney(user) {
 //!desposit money function end
 let ask = prompt("Hello there!!,Do you want to Log in or Sign up or changing the password ?")//*asking the user for his desire
 ask = ask.toLocaleLowerCase().trim()
+function firstCondition(){
+    // if (ask === "sign up") {
+    //     signUp()
+    // }else if (ask === "log in") {
+    //     Login()
+    //     //!careful this is the end of the second condition
+    // }else if (ask == "change password") {
+    //     changePassword()
+    // }else {
+    //     ask = prompt("Hello there!!,Do you want to Log in or Sign up or changing the password ?")
+    
+    // }
+}
+//^first condition start
 if (ask === "sign up") {
     signUp()
 }else if (ask === "log in") {
@@ -197,11 +220,19 @@ if (ask === "sign up") {
 }else if (ask == "change password") {
     changePassword()
 }else {
-    
+    ask = prompt("Hello there!!,Do you want to Log in or Sign up or changing the password ?")
 }
+//^first condition end
+//&Take a loan start
+function Loan(user) {
+    //* If the user chooses this option, they can take a loan up to 20% of what they already have
+    user.balance += user.balance * 0.2
+    user.history.push(`${user.name} took a loan`)
+    var credit = user.balance += user.balance * 0.2
+}
+//&Take a loan end
+//*offering services start 
 function offerServices(User) {
-
-
     let userChoice = prompt("Choose option between: 'logout', 'withdraw', 'deposit', 'loan', 'invest', 'history'");
 
         switch (userChoice) {
@@ -231,12 +262,14 @@ function offerServices(User) {
 
             break;
             case "history":
-
+                console.log(User.history);
             break;
             default:
                 console.log("wa ta khtar chi 7aja mgada");
         }
 }
+//*offering services end 
+
 
 
 
