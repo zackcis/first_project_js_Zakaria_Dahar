@@ -1,49 +1,62 @@
-// class User {
-//     constructor(name,email,age,password,){
-//         this.name = name
-//         this.email = email
-//         this.age = age
-//         this.password = password
-//     }
-// }
-// let Users = [];//*where will i save users data
-let warning = alert("mr user please be smart ra lcode dyali 3la 9ad l7al")
-// let ask = prompt("Hello there!!,Do you want to Log in or Sign up or changing the password ?")//*asking the user for his desire
-// //&Signing Up
-// //? Name
-// if (ask == "sign up") {
-//     let nom = prompt("Your Full Name")
-// let nomPattern = /[^A-Za-z ]/g;
-// while (nom.match(nomPattern) || nom.length <= 5) {
-//     nom = prompt("Your Full Name should not include special characters and it has to be more than 5 char");
-//     nom = nom.trim();
-// }
-//     let nameWords = nom.split(" ");//*string to array with split
-//     for (let i = 0; i < nameWords.length; i++) {
-//     nameWords[i] = nameWords[i][0].toUpperCase() + nameWords[i].substr(1);
-//     }
-//     console.log(nameWords.join(" "));
-// }
+class User {
+    constructor(name,email,age,password,balance){
+        this.name = name
+        this.email = email
+        this.age = age
+        this.password = password
+        this.balance = 1000;
+    }
+}
+let Users = [];//*where will i save users data
+let zack = new User ("zack","zakaria.eldahar@gmail.com",23,"zakaria123@")
+Users.push(zack)
+function emailExist(email) {
+    return Users.find(user => user.email === email);
+}
+//&singUp function start
+function signUp() {
+    let warning = alert("mr user please be smart ra lcode dyali 3la 9ad l7al")
+//&Signing Up
+//? Name
+let nom = prompt("Your Full Name")
+let nomPattern = /[^A-Za-z ]/g;
+while (nom.match(nomPattern) || nom.length <= 5) {
+    nom = prompt("Your Full Name should not include special characters and it has to be more than 5 char");
+    nom = nom.trim();
+}
+    let nameWords = nom.split(" ");//*string to array with split
+    for (let i = 0; i < nameWords.length; i++) {
+    nameWords[i] = nameWords[i][0].toUpperCase() + nameWords[i].substr(1);
+    }
+    // console.log(nameWords.join(" "));
 // nom = nom.replace(/[^a-zA-Z ]/g, '');//*deleting special char
-//?EMAIL
-// let askEmail = prompt("Enter your email please!")
-// askEmail = askEmail.toLocaleLowerCase()
-// //(email.indexOf(' ') !== -1)
+// ?EMAIL
+let askEmail = prompt("Enter your email please!")
+askEmail = askEmail.trim()
+askEmail = askEmail.toLocaleLowerCase()
+//(email.indexOf(' ') !== -1)
 
-// if (askEmail.includes(' ') || askEmail.length < 10 || askEmail.includes('@') == false ) {
-//     while (askEmail.includes(' ')) {
-//         askEmail = prompt("Please enter an email without spaces.");
-//     }
-//     while (askEmail.length < 10) {
-//         askEmail = prompt("Please enter an email with at least 10 characters.");
-//     }
-//     while (askEmail.includes('@') == false) {
-//         askEmail = prompt("Please enter an email with an '@' ");
-//     }
-//     //*Ensure the email is unique.
-// }
-//?AGE
-
+if (askEmail.includes(' ') || askEmail.length < 10 || askEmail.includes('@') == false ) {
+    while (askEmail.includes(' ')) {
+        askEmail = prompt("Please enter an email without spaces.");
+    }
+    while (askEmail.length < 10) {
+        askEmail = prompt("Please enter an email with at least 10 characters.");
+    }
+    while (askEmail.includes('@') == false) {
+        askEmail = prompt("Please enter an email with an '@' ");
+    }
+    // let isthemailexist = Users.filter(element => element.email == askEmail)
+    // console.log(isthemailexist);
+    // if (isthemailexist[0]== askEmail) {
+    //     askEmail = prompt("Email already exists. Please enter a different email.");
+    // }
+    while (emailExist(askEmail)=== true) {
+        askEmail = prompt("Email already exists. Please enter a different email.");
+    }        
+    //*Ensure the email is unique.
+}
+// ?AGE
 let age = parseInt(prompt("Enter your age with numbers"));
 // age = age.trim();
 if (age >= 100 || age == 0 || isNaN(age)) {
@@ -61,4 +74,139 @@ if (age >= 100 || age == 0 || isNaN(age)) {
     }
 }
 console.log(age);
+// ?PASSWORD
+let askPassword = prompt("Enter your password please")
+askPassword = askPassword.trim()
+if (askPassword.includes(' ') || askPassword.includes('"@", "#", "-", "+", "*", "/"') == false || askPassword.length < 7 ) {
+    while (askPassword.includes(' ')) {
+        askPassword = prompt("Enter a password without spaces in the middle")
+    }
+    while (askPassword.includes("@" || "#"|| "-"|| "+" ||"*" ||"/") == false) {
+        askPassword = prompt("Eter a password that includes at least one special char")
+    }
+    while (askPassword.length < 7) {
+        askPassword = prompt("Enter a password that includes at least 7 chars")
+    }
+}
+let askPasswordConfirmation = prompt("confirm your password")
+if (askPasswordConfirmation != askPassword) {
+    while (askPasswordConfirmation != askPassword) {
+        prompt("it's not the same password")
+        signUp()
+    }
+}
+let user = new User(nameWords.join(" "),askEmail,age,askPassword);
+Users.push(user)
+console.log(Users);
+}
+//&singUp function end
+//?Login function start
+function Login() {
+    let loginEmail = prompt("Enter your email ");
+    let loginPassword = prompt("Enter your password ");
+    let user = Users.find(user => user.email === loginEmail && user.password === loginPassword);
+    console.log(user);
+    if (user) {
+        alert(`welcome ${user.name} your balance is ${user.balance}`)
+    } else {
+        console.log("false email or password please try again");
+    }
+}
+//?Login function end
+//^changin password start
+function changePassword() {
+    
+        let changePasswordEmail = prompt("Enter your email to change the password:");
+        
+        let user = Users.find(user => user.email === changePasswordEmail);
+    
+        if (user) {
+            let newPassword = prompt("Enter your new password:");
+            user.password = newPassword;
+            console.log("daba bdlnah lik mara khra mat3awdhach");
+        } else {
+            console.log("Email doesn't exist allo lboliss");
+        }
+    
+} 
+//^changin password ending
+//*withdraw function start
+function withdrawMoney(user) {
+    let amountToWithdraw = prompt("insert the amountToWithdraw:");
+    amountToWithdraw = parseInt(amountToWithdraw);
+
+    if (isNaN(amountToWithdraw) || amountToWithdraw <= 0) {
+        alert("olahta bzez bach wssalt hna be smart ra dakchi li dakhalti ghalat")
+        while (isNaN(amountToWithdraw)) {
+            amountToWithdraw = prompt("insert a NUMBER of the amountToWithdraw:")
+        }
+        while (amountToWithdraw <= 0) {
+            alert("khouya wach katfla ya khrej lflouss ya ser f7alk")
+            amountToWithdraw = prompt("insert a NUMBER greater than 0 of the amountToWithdraw:")
+        }
+    }
+
+    if (amountToWithdraw > user.balance) {
+        alert("chno ze3ma dik 2dh li 3andek ghatwld lik?")
+        while (amountToWithdraw > user.balance) {
+            amountToWithdraw = prompt("dakhal chi ra9m wa9i3i alfa9ir")
+        }
+    } else {
+        user.balance -= amountToWithdraw;
+        console.log(`rass l3am hada chri lsa7btk cadeau, b9at lik: ${user.balance} al3niba`);
+    }
+}
+//*withdraw function end
+let ask = prompt("Hello there!!,Do you want to Log in or Sign up or changing the password ?")//*asking the user for his desire
+ask = ask.toLocaleLowerCase().trim()
+if (ask === "sign up") {
+    signUp()
+}else if (ask === "log in") {
+    Login()
+    //!careful this is the end of the second condition
+}else if (ask == "change password") {
+    changePassword()
+}else {
+    
+}
+function offerServices(user) {
+
+
+    let userChoice = prompt("Choose option between: 'logout', 'withdraw', 'deposit', 'loan', 'invest', 'history'");
+
+        switch (userChoice) {
+            case "logout":
+                ask = prompt("Hello there!!,Do you want to Log in or Sign up or changing the password ?") ;
+                if (ask === "sign up") {
+                    signUp()
+                }else if (ask === "log in") {
+                    Login()
+                    //!careful this is the end of the second condition
+                }else if (ask == "change password") {
+                    changePassword()
+                }else {
+                
+                }
+                break;
+            case "Withdraw Money":
+                withdrawMoney(user)
+            break;
+            case "Deposit Money":
+                
+            break;
+            case "Take a Loan":
+
+            break;
+            case "invest":
+
+            break;
+            case "history":
+
+            break;
+            default:
+                console.log("Invalid choice. Please choose a valid option.");
+        }
+}
+
+
 

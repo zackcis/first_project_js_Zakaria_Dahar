@@ -33,7 +33,7 @@
             <!--? Accept just string -->
             # Email:
             - Check for leading or trailing spaces.
-            <!-- *delete spaces -->
+            <!-- ?delete spaces -->
             - Convert all letters to lowercase.
             <!--?Lowercacse -->
             - Do not save the Email if it has spaces in the middle.
@@ -43,7 +43,7 @@
             - Do not save the Email if it does not contain exactly one "@" symbol.
             <!--?@ is mandatory -->
             - Ensure the email is unique.
-            <!--?special email -->
+            <!--*special email -->
             # Age:
             - Check for leading, trailing, or middle spaces.
             <!-- ?delete spaces -->
@@ -53,23 +53,23 @@
             <!--?enter your right age -->
             # Password:
             - Check for leading or trailing spaces.
-            <!-- *delete spaces -->
+            <!--?delete spaces -->
             - Do not save the Password if it has spaces in the middle.
-            <!--*refuse if it has space in the midlle -->
+            <!--?refuse if it has space in the midlle -->
             - Require at least one special character from the set: ["@", "#", "-", "+", "*", "/"].
             - Require at least 7 characters to confirm the password.
-            <!--* more than 7 -->
+            <!--?more than 7 -->
             # Password_confirmed:
             - The user must re-enter their exact password; otherwise, they are blocked.
-            <!--* if the user forget the password he have start from the begining  -->
-            <!--!function -->
+            <!--?if the user forget the password he have start from the begining  -->
+            <!--&function -->
         * If the user chooses to log in, here are the details they must enter:
             # Email:
             - Check if the email exists in our Database.
-            <!--*check if the email already exist  -->
+            <!--?check if the email already exist  -->
             # Password:
             - Check if the entered password is associated with the previously entered email.
-            <!-- -->
+            <!--?done->
         * If the user chooses to change the password:
             - They must enter their existing Email in the Database.
         * After the user logs in, display the amount they have in their bank (user's choice) and offer them services:
