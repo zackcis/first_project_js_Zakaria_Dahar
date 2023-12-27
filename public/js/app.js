@@ -14,7 +14,7 @@ function emailExist(email) {
     return Users.find(user => user.email === email);
 }
 //&singUp function start
-function signUp() {
+function signUp(user) {
     let warning = alert("mr user please be smart ra lcode dyali 3la 9ad l7al")
 //&Signing Up
 //? Name
@@ -56,6 +56,7 @@ if (askEmail.includes(' ') || askEmail.length < 10 || askEmail.includes('@') == 
     }        
     //*Ensure the email is unique.
 }
+//! matgadatch lya checking cuz knt dayr function bla param
 // ?AGE
 let age = parseInt(prompt("Enter your age with numbers"));
 // age = age.trim();
@@ -101,7 +102,7 @@ console.log(Users);
 }
 //&singUp function end
 //?Login function start
-function Login() {
+function Login(user) {
     let loginEmail = prompt("Enter your email ");
     let loginPassword = prompt("Enter your password ");
     let user = Users.find(user => user.email === loginEmail && user.password === loginPassword);
@@ -157,6 +158,26 @@ function withdrawMoney(user) {
     }
 }
 //*withdraw function end
+//!desposit money function start
+function despositMoney(user) {
+    let askDesposit = parseInt(prompt("enter the amount that you wanna desposit :"))
+    if (askDesposit > 1000 || askDesposit == 0 || isNaN(askDesposit) ) {
+        while (askDesposit > 1000) {
+            alert("3andek bzaf dlflouss dakhal gha 1000 o 3ti dakchi li b9a l achraf")
+            askDesposit = parseInt(prompt("enter an amount that less than 1000 mad :"))
+        }
+        while (askDesposit == 0) {
+            askDesposit = parseInt(prompt("enter an amount greater than 0 mad :"))
+        }
+        while (isNaN(askDesposit)) {
+            askDesposit = parseInt(prompt("enter an amount a real NUMBER please:"))
+        }
+    }else{
+        user.balance += askDesposit
+        alert("Galo nass zman khzen tl9a bach tfra7 mni t7zen (gha fya n3ass)")
+    }
+}
+//!desposit money function end
 let ask = prompt("Hello there!!,Do you want to Log in or Sign up or changing the password ?")//*asking the user for his desire
 ask = ask.toLocaleLowerCase().trim()
 if (ask === "sign up") {
@@ -192,7 +213,7 @@ function offerServices(user) {
                 withdrawMoney(user)
             break;
             case "Deposit Money":
-                
+                despositMoney(user)
             break;
             case "Take a Loan":
 

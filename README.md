@@ -79,10 +79,10 @@
             <!-- !function -->
             # Withdraw Money:
             - If the user chooses this option, they can withdraw an amount from their bank (not exceeding the available amount).
-            <!--*the user take -->
+            <!--?the user take -->
             # Deposit Money:
             - If the user chooses this option, they can deposit the desired amount (not exceeding 1000 dirhams).
-            <!--*the user give -->
+            <!--?the user give -->
             # Take a Loan:
             - If the user chooses this option, they can take a loan up to 20% of what they already have.
             - They receive an additional 20%, but lose 10% with each login until reaching the amount of their loan.
