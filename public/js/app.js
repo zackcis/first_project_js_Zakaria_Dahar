@@ -1,10 +1,11 @@
 class User {
-    constructor(name,email,age,password,balance){
+    constructor(name,email,age,password,history){
         this.name = name
         this.email = email
         this.age = age
         this.password = password
         this.balance = 1000;
+        this.history = history
     }
 }
 let Users = [];//*where will i save users data
@@ -96,7 +97,8 @@ if (askPasswordConfirmation != askPassword) {
         signUp()
     }
 }
-let user = new User(nameWords.join(" "),askEmail,age,askPassword);
+let user = new User(nameWords.join(" "),askEmail,age,askPassword,[]);
+Users.history = [`${user.name} signed up`]
 Users.push(user)
 console.log(Users);
 }
@@ -112,10 +114,11 @@ function Login(user) {
     } else {
         console.log("false email or password please try again");
     }
+    Users.history.push(`${user.name} is conected`)
 }
 //?Login function end
 //^changin password start
-function changePassword() {
+function changePassword(user) {
     
         let changePasswordEmail = prompt("Enter your email to change the password:");
         
@@ -128,7 +131,7 @@ function changePassword() {
         } else {
             console.log("Email doesn't exist allo lboliss");
         }
-    
+    user.history.push(`${user.name} changed his password`)
 } 
 //^changin password ending
 //*withdraw function start
@@ -156,6 +159,8 @@ function withdrawMoney(user) {
         user.balance -= amountToWithdraw;
         console.log(`rass l3am hada chri lsa7btk cadeau, b9at lik: ${user.balance} al3niba`);
     }
+    user.history.push(`${user.name} did a withdraw`)
+
 }
 //*withdraw function end
 //!desposit money function start
@@ -176,6 +181,8 @@ function despositMoney(user) {
         user.balance += askDesposit
         alert("Galo nass zman khzen tl9a bach tfra7 mni t7zen (gha fya n3ass)")
     }
+    user.history.push(`${user.name} saved his money`)
+
 }
 //!desposit money function end
 let ask = prompt("Hello there!!,Do you want to Log in or Sign up or changing the password ?")//*asking the user for his desire
@@ -190,7 +197,7 @@ if (ask === "sign up") {
 }else {
     
 }
-function offerServices(user) {
+function offerServices(User) {
 
 
     let userChoice = prompt("Choose option between: 'logout', 'withdraw', 'deposit', 'loan', 'invest', 'history'");
@@ -225,7 +232,7 @@ function offerServices(user) {
 
             break;
             default:
-                console.log("Invalid choice. Please choose a valid option.");
+                console.log("wa ta khtar chi 7aja mgada");
         }
 }
 
